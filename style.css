@@ -32,7 +32,7 @@ html, body {
 	padding: 4px;
 }
 
-select, option, button {
+select, option, button, input {
 	font-family: Courier;
 }
 
@@ -64,11 +64,6 @@ select, option, button {
 
 .cardName {
 	flex: 1;
-}
-
-.removeButton {
-	color: red;
-	padding: 0 2px 0 2px;
 }
 
 .type0 {
@@ -105,3 +100,6 @@ textarea {
 	margin-bottom: 4px;
 }
 
+.nodisplay {
+	display: none;
+}

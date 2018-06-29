@@ -2,8 +2,9 @@ var app = angular.module('app', []);
 
 app.controller('Controller', ['$scope', '$http', '$parse', function($scope, $http, $parse) {
 
-	$scope.groups = [['Opt'], [], [], [], []];
-	$scope.selected = -1;
+	$scope.groups = [[], [], [], [], []];
+	$scope.selected = 0;
+	$scope.marked = new Set();
 
 	$http.get('./AllSets.json', {responseType: 'json'}).then(function(result) {
 		$scope.mtgjson = result.data;
@@ -48,37 +49,89 @@ app.controller('Controller', ['$scope', '$http', '$parse', function($scope, $htt
 		});
 		$scope.cards = cards;
 	};
-	
-	$scope.getCards = function() {
-		var marked = new Set($scope.groups.reduce(function(total, amount) {
-			return total.concat(amount);
-		}, []));
+
+	$scope.key = function(e) {
+		var index = parseInt(e.key);
+		if (!isNaN(index) && $scope.selected != -1) {
+			$scope.selected = index - 1;
+		}
+	};
+
+	$scope.unmarkedCards = function() {
 		if (!$scope.cards) {
 			return [];
 		}
 		return $scope.cards.filter(function(card) {
-			return !marked.has(card.name);
+			return !$scope.marked.has(card.name);
 		});
 	};
-	
-	$scope.selectCard = function(index) {
-		$scope.selected = index;
-	};
 
-	$scope.selectMarked = function(index) {
-		$scope.selected = index;
-	};
+	$scope.clickCard = function(card) {
+		$scope.marked.add(card.name);
+		$scope.groups[$scope.selected].push(card.name);
+	}
 
-	$scope.deselect = function() {
-		$scope.selected = -1;
-	};
-
-	$scope.key = function(e) {
-		var index = parseInt(e.key);
-		console.log(index);
-		if (!isNaN(index) && $scope.selected != -1) {
-			$scope.groups[index - 1].push($scope.getCards()[$scope.selected].name);
+	$scope.clickMarked = function(e, groupIndex, index) {
+		var name = $scope.groups[groupIndex][index];
+		$scope.groups[groupIndex].splice(index, 1);
+		if (e.shiftKey) {
+			$scope.marked.delete(name);
+		} else {
+			$scope.groups[$scope.selected].push(name);
 		}
+	}
+	
+	// Dirty load/save code
+	
+	$scope.save = function() {
+		var lines = [];
+		for (var i = 0; i < $scope.groups.length; i++) {
+			lines.push('# GROUP' + i);
+			for (card of $scope.groups[i]) {
+				lines.push(card);
+			}
+		}
+		var download = document.getElementById('download');
+		download.download = 'cards.txt';
+		download.href = 'data:text/plain;charset=utf-8;base64,' + utf8ToBase64(lines.join('\n'));
+		download.click();
+	}
+	
+	$scope.handleDragOver = function(e) {
+		e.stopPropagation();
+		e.preventDefault();
+		e.dataTransfer.dropEffect = 'copy';
+	};
+	
+	$scope.readFile = function(e) {
+		var reader = new FileReader();
+		var file = e.target.files[0];
+		reader.onload = function(e1) {
+			var data = e1.target.result;
+			$scope.$apply(function() {
+				parse(data.split(/\r?\n/), $scope.viewIndex);
+			});
+		}
+		reader.readAsText(file, 'UTF-8');
+	};
+	
+	function parse(lines) {
+		var group = 0;
+		for (var line of lines) {
+			line = line.trim();
+			if (line.startsWith('#')) {
+				group++;
+			} else {
+				if (!$scope.marked.has(line)) {
+					$scope.marked.add(line)
+					$scope.groups[group - 1].push(line);
+				}
+			}
+		}
+	}
+	
+	$scope.load = function() {
+		document.getElementById('upload').click();
 	};
 
 }]);
@@ -122,4 +175,8 @@ function setTypeIndex(set) {
 		console.log(set.name + ': ' + set.type);
 		return 99;
 	}
+}
+
+function utf8ToBase64(str) {
+	return btoa(unescape(encodeURIComponent(str)));
 }

@@ -13,24 +13,28 @@
 <body>
 
 <div class="main">
+
 	<div class="cards">
 		<img class="card" 
-				ng-repeat="card in getCards() track by $index" 
+				ng-repeat="card in unmarkedCards()" 
 				ng-src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{card.multiverseid}}&type=card" 
-				ng-mouseover="selectCard($index)"
-				ng-mouseout="deselect()"/>
+				ng-click="clickCard(card)"/>
 	</div>
 
 	<div class="panel">
 		<select ng-model="selectedCode">
 			<option ng-repeat="set in sets" ng-class="set.type">{{set.name}}</option>
 		</select>
-		<button ng-click="update()">Update</button>
+		<button ng-click="update()">Update</button><br>
+		<button ng-click="load()">Load</button><button ng-click="save()">Save</button>
 		<textarea class="filter" ng-model="filter" placeholder="filter logic"></textarea>
 		<div class="group" ng-repeat="group in groups track by $index" ng-show="group.length" ng-init="groupIndex = $index">
-			<div class="marked" ng-repeat="card in group" ng-mouseover="selectMarked(groupIndex, $index)" ng-mouseout="deselect()">{{card}}</div>
+			<div class="marked" ng-repeat="card in group" ng-click="clickMarked($event, groupIndex, $index)">{{card}}</div>
 		</div>
 	</div>
+	
+	<input type="file" class="nodisplay" id="upload" onchange="angular.element(this).scope().readFile(event)">
+	<a class="nodisplay" id="download"></a>
 
 </div>
 	
