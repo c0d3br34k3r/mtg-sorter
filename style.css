@@ -1,0 +1,107 @@
+html, body {
+	margin: 0;
+	height: 100%;
+}
+
+.main {
+	display: flex;
+	height: 100%;
+}
+
+.cards {
+	flex: 1;
+	padding: 4px 0 4px 4px;
+	display: flex;
+	flex-wrap: wrap;
+	overflow-y:  auto;
+	box-sizing: border-box;
+	align-items: baseline;
+}
+
+.card {
+	margin-right: 4px;
+	margin-bottom: 4px;
+}
+
+.card:hover {
+	filter: saturate(3);
+}
+
+.panel {
+	width: 16em;
+	padding: 4px;
+}
+
+select, option, button {
+	font-family: Courier;
+}
+
+.group {
+	box-sizing: border-box;
+	border: 1px solid black;
+	width: 100%;
+	font-size: 12px;
+	font-family: Courier;
+	background-color: #EBEBEB;
+}
+
+.group:not(:last-child) {
+	margin-bottom: 4px;
+}
+
+.marked {
+	padding: 0 2px 0 2px;
+	overflow: hidden;
+	font-size: 12px;
+    white-space: nowrap;
+	display: flex;
+	align-items: baseline;
+}
+
+.marked:hover {
+	background-color: #FF7216;
+}
+
+.cardName {
+	flex: 1;
+}
+
+.removeButton {
+	color: red;
+	padding: 0 2px 0 2px;
+}
+
+.type0 {
+	background-color: inherit;
+}
+
+.type1 {
+	background-color: #BCED91;
+}
+
+.type2 {
+	background-color: #FA9A50;
+}
+
+.type3 {
+	background-color: #82CFFD;
+}
+
+.type4 {
+	background-color: #FF007F;
+}
+
+textarea {
+	box-sizing: border-box;
+}
+
+.filter {
+	resize: none;
+	font-size: 11px;
+	padding: 2px;
+	border: 0;
+	width: 100%;
+	background-color: #E5E5E5;
+	margin-bottom: 4px;
+}
+
