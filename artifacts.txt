@@ -1,0 +1,356 @@
+# GROUP0
+Blackblade Reforged
+Gilded Lotus
+Helm of the Host
+Icy Manipulator
+Jhoira's Familiar
+Mishra's Self-Replicator
+Mox Amber
+Thran Temporal Gateway
+Traxos, Scourge of Kroog
+Weatherlight
+Voltaic Servant
+Azor's Gateway
+Golden Guardian
+The Immortal Sun
+Conqueror's Galleon
+Primal Amulet
+Sorcerous Spyglass
+Thaumatic Compass
+Treasure Map
+Vanquisher's Banner
+Mirage Mirror
+God-Pharaoh's Gift
+Oracle's Vault
+Throne of the God-Pharaoh
+Foundry Assembler
+Filigree Crawler
+Lifecrafter's Bestiary
+Merchant's Dockhand
+Inspiring Statuary
+Ornithopter
+Planar Bridge
+Renegade Map
+Scrap Trawler
+Treasure Keeper
+Walking Ballista
+Aetherflux Reservoir
+Animation Module
+Cataclysmic Gearhulk
+Combustible Gearhulk
+Cultivator's Caravan
+Fleetwheel Cruiser
+Foundry Inspector
+Key to the City
+Metalwork Colossus
+Chief of the Foundry
+Noxious Gearhulk
+Panharmonicon
+Scrapheap Scrounger
+Prophetic Prism
+Smuggler's Copter
+Skysovereign, Consul Flagship
+Soul Separator
+Tamiyo's Journal
+Wild-Field Scarecrow
+Hedron Archive
+Alhammarret's Archive
+Hangarback Walker
+Mage-Ring Responder
+Sword of the Animist
+Orbs of Warding
+Pyromancer's Goggles
+Hero's Blade
+Phyrexian Revoker
+Scuttling Doom Engine
+Soul of New Phyrexia
+Tormod's Crypt
+Perilous Vault
+Haunted Plate Mail
+Obelisk of Urd
+Darksteel Citadel
+Springleaf Drum
+Astral Cornucopia
+Colossus of Akros
+Burnished Hart
+Hammer of Purphoros
+Bow of Nylea
+Bident of Thassa
+Spear of Heliod
+Darksteel Forge
+Door of Destinies
+Elixir of Immortality
+Pyromancer's Gauntlet
+Ratchet Bomb
+Ring of Three Wishes
+Strionic Resonator
+Trading Post
+# GROUP1
+Guardians of Koilos
+Howling Golem
+Damping Sphere
+Forebear's Blade
+Juggernaut
+Powerstone Shard
+Short Sword
+Sorcerer's Wand
+Skittering Surveyor
+Shield of the Realm
+Navigator's Compass
+Urza's Tome
+Traveler's Amulet
+Captain's Hook
+Awakened Amalgam
+Strider Harness
+Silent Gravestone
+Orazca Relic
+Gleaming Barrier
+Dowsing Dagger
+Fell Flagship
+Pillar of Origins
+Sentinel Totem
+Shadowed Caravel
+Sleek Schooner
+Elaborate Firecannon
+Prying Blade
+Sunset Pyramid
+Hollow One
+Abandoned Sarcophagus
+Crook of Condemnation
+Wall of Forgotten Pharaohs
+Bontu's Monument
+Edifice of Authority
+Pyramid of the Pantheon
+Gate to the Afterlife
+Embalmer's Tools
+Hazoret's Monument
+Honed Khopesh
+Kefnet's Monument
+Oketra's Monument
+Rhonas's Monument
+Watchers of the Dead
+Barricade Breaker
+Daredevil Dragster
+Cogwork Assembler
+Hope of Ghirapur
+Heart of Kiran
+Aethersphere Harvester
+Consulate Dreadnought
+Crackdown Construct
+Gonti's Aether Heart
+Pacification Array
+Paradox Engine
+Peacewalker Colossus
+Servo Schematic
+Universal Solvent
+Untethered Express
+Tezzeret's Simulacrum
+Metallic Mimic
+Aetherworks Marvel
+Ballista Charger
+Bomat Bazaar Barge
+Dynavolt Tower
+Electrostatic Pummeler
+Fabrication Module
+Filigree Familiar
+Demolition Stomper
+Ghirapur Orrery
+Inventor's Goggles
+Iron League Steed
+Multiform Wonder
+Deadlock Trap
+Bomat Courier
+Perpetual Timepiece
+Self-Assembler
+Torrential Gearhulk
+Verdurous Gearhulk
+Whirlermaker
+Workshop Assistant
+Ovalchase Dragster
+Decoction Module
+Cryptolith Fragment
+Lupine Prototype
+Stitcher's Graft
+Terrarion
+Brain in a Jar
+Corrupted Grafstone
+Epitaph Golem
+Harvest Hand
+Haunted Cloak
+Magnifying Glass
+Neglected Heirloom
+Skeleton Key
+Slayer's Plate
+Thraben Gargoyle
+Captain's Claws
+Hedron Crawler
+Seer's Lantern
+Bone Saw
+Chitinous Cloak
+Stoneforge Masterwork
+Pilgrim's Eye
+Aligned Hedron Network
+Ramroller
+Helm of the Gods
+Jayemdae Tome
+Meteorite
+Runed Servitor
+Throwing Knife
+Alchemist's Vial
+Spidersilk Net
+Stormrider Rig
+Tapestry of the Ages
+Goblin Boom Keg
+Hewed Stone Retainers
+Scroll of the Masters
+Ghostfire Blade
+Altar of the Brood
+Briber's Purse
+Cranial Archive
+Dragon Throne of Tarkir
+Heart-Piercer Bow
+Ugin's Nexus
+The Chain Veil
+Shield of the Avatar
+Rogue's Gloves
+Profane Memento
+Grindclock
+Hot Soup
+Avarice Amulet
+Godsend
+Hall of Triumph
+Chariot of Victory
+Heroes' Podium
+Gorgon's Head
+Siren Song Lyre
+Whip of Erebos
+Witches' Eye
+Akroan Horse
+Darksteel Ingot
+Fireshrieker
+Guardian of the Ages
+Millstone
+# GROUP2
+Bloodtallow Candle
+Amaranthine Wall
+Aesthir Glider
+Sparring Construct
+Teferi's Sentinel
+Jousting Lance
+Pardic Wanderer
+Cobbled Wings
+Pirate's Cutlass
+Gilded Sentinel
+Hierophant's Chalice
+Dusk Legion Dreadnought
+Dagger of the Worthy
+Graven Abomination
+Manalith
+Visage of Bolas
+Luxa River Shrine
+Implement of Improvement
+Implement of Ferocity
+Implement of Examination
+Implement of Malice
+Irontread Crusher
+Consulate Turret
+Mobile Garrison
+Night Market Guard
+Prizefighter Construct
+Reservoir Walker
+Watchful Automaton
+Welder Automaton
+Verdant Automaton
+Pendulum of Patterns
+Augmenting Automaton
+Aegis Automaton
+Implement of Combustion
+Accomplished Automaton
+Aradara Express
+Bastion Mastodon
+Dukhara Peafowl
+Eager Construct
+Fireforger's Puzzleknot
+Glassblower's Puzzleknot
+Consulate Skygate
+Cogworker's Puzzleknot
+Sky Skiff
+Metalspinner's Puzzleknot
+Narnam Cobra
+Prakhata Pillar-Bug
+Torch Gauntlet
+Weldfast Monitor
+Woodweaver's Puzzleknot
+Snare Thopter
+Renegade Freighter
+Cathar's Shield
+Cultist's Staff
+Field Creeper
+Geist-Fueled Scarecrow
+Slayer's Cleaver
+Thirsting Axe
+Explosive Apparatus
+Murderer's Axe
+Runaway Carriage
+Shard of Broken Glass
+True-Faith Censer
+Wicker Witch
+Hedron Blade
+Pathway Arrows
+Slab Hammer
+Veteran's Sidearm
+Prism Ring
+War Horn
+Sigil of Valor
+Gold-Forged Sentinel
+Guardian Automaton
+Guardians of Meletis
+Angel's Tomb
+Bonded Construct
+Brawler's Plate
+Ancestral Statue
+Atarka Monument
+Custodian of the Trove
+Dragonloft Idol
+Dromoka Monument
+Gate Smasher
+Keeper of the Lens
+Kolaghan Monument
+Ojutai Monument
+Silumgar Monument
+Vial of Dragonfire
+Ugin's Construct
+Pilgrim of the Fires
+Abzan Banner
+Jeskai Banner
+Lens of Clarity
+Mardu Banner
+Sultai Banner
+Temur Banner
+Witness of the Ages
+Tyrant's Machine
+Will-Forged Golem
+Staff of the Wild Magus
+Staff of the Sun Magus
+Staff of the Death Magus
+Staff of the Flame Magus
+Staff of the Mind Magus
+Sacred Armory
+Gargoyle Sentinel
+Bronze Sable
+Deserter's Quarters
+Armory of Iroas
+Pillar of War
+Pyxis of Pandemonium
+Prowler's Helm
+Opaline Unicorn
+Fleetfeather Sandals
+Flamecast Wheel
+Anvilwrought Raptor
+Rod of Ruin
+Sliver Construct
+Vial of Poison
+Bubbling Cauldron
+Accorder's Shield
+# GROUP3
+# GROUP4

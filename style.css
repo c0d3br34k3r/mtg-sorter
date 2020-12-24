@@ -13,7 +13,7 @@ html, body {
 	padding: 4px 0 4px 4px;
 	display: flex;
 	flex-wrap: wrap;
-	overflow-y:  auto;
+	overflow-y: auto;
 	box-sizing: border-box;
 	align-items: baseline;
 }
@@ -21,6 +21,19 @@ html, body {
 .card {
 	margin-right: 4px;
 	margin-bottom: 4px;
+}
+
+.textCard {
+	padding: 4px;
+	white-space: pre-wrap;
+	display: inline;
+	width: 250px;
+	height: 250px;
+	border: 2px solid black;
+	border-radius: 10px;
+	margin-right: 4px;
+	margin-bottom: 4px;
+	overflow-y: auto;
 }
 
 .card:hover {

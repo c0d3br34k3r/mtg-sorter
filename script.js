@@ -2,52 +2,22 @@ var app = angular.module('app', []);
 
 app.controller('Controller', ['$scope', '$http', '$parse', function($scope, $http, $parse) {
 
-	$scope.groups = [[], [], [], [], []];
+	$scope.groups = {};
 	$scope.selected = 0;
 	$scope.marked = new Set();
-
-	$http.get('./AllSets.json', {responseType: 'json'}).then(function(result) {
-		$scope.mtgjson = result.data;
-		var sets = Object.values($scope.mtgjson).filter(function(set) {
-			return !set.name.startsWith('p') && !set.onlineOnly && set.cards[0].multiverseid;
-		});
-		sets.sort(function(a, b) {
-			var setTypeCmp = setTypeIndex(a) - setTypeIndex(b);
-			if (setTypeCmp != 0) {
-				return setTypeCmp;
-			}
-			return -a.releaseDate.localeCompare(b.releaseDate);
-		});
-		$scope.sets = sets.map(function(set) {
-			return {name: set.code, type: 'type' + setTypeIndex(set)};
-		});
+	
+	let sets = Object.values(database);
+	sets.sort(function(a, b) {
+		var setTypeCmp = setTypeIndex(a) - setTypeIndex(b);
+		if (setTypeCmp != 0) {
+			return setTypeCmp;
+		}
+		return -a.date.localeCompare(b.date);
 	});
+	$scope.sets = sets;
 
 	$scope.update = function() {
-		var filter = $scope.filter ? $parse($scope.filter) : function() { return true; };
-		var cards = $scope.mtgjson[$scope.selectedCode].cards.filter(function(card) {
-			if (BASIC_LAND.has(card.name)) {
-				return false;
-			}
-			switch (card.layout) {
-			case 'normal': 
-				return true;
-			case 'split':
-			case 'flip':
-			case 'double-faced': 
-				return card.name == card.names[0];
-			case 'meld': 
-				return card.name != card.names[2];
-			default: 
-				return false;
-			}
-		}).filter(function(card) {
-			return filter($scope, {card: card});
-		});
-		cards.sort(function(a, b) {
-			return a.name.localeCompare(b.name); 
-		});
-		$scope.cards = cards;
+		$scope.cards = database[$scope.selectedCode].cards;
 	};
 
 	$scope.key = function(e) {
@@ -65,78 +35,100 @@ app.controller('Controller', ['$scope', '$http', '$parse', function($scope, $htt
 			return !$scope.marked.has(card.name);
 		});
 	};
+	
+	function getGroup(key) {
+		let list = $scope.groups[key]
+		if (list === undefined) {
+			list = [];
+			$scope.groups[key] = list;
+		}
+		return list;
+	}
 
 	$scope.clickCard = function(card) {
 		$scope.marked.add(card.name);
-		$scope.groups[$scope.selected].push(card.name);
+		getGroup($scope.selected).push(card.name);
 	}
 
 	$scope.clickMarked = function(e, groupIndex, index) {
 		var name = $scope.groups[groupIndex][index];
-		$scope.groups[groupIndex].splice(index, 1);
+		getGroup(groupIndex).splice(index, 1);
 		if (e.shiftKey) {
 			$scope.marked.delete(name);
 		} else {
-			$scope.groups[$scope.selected].push(name);
+			getGroup($scope.selected).push(name);
 		}
 	}
 	
 	// Dirty load/save code
 	
 	$scope.save = function() {
-		var lines = [];
-		for (var i = 0; i < $scope.groups.length; i++) {
-			lines.push('# GROUP' + i);
-			for (card of $scope.groups[i]) {
-				lines.push(card);
-			}
-		}
 		var download = document.getElementById('download');
 		download.download = 'cards.txt';
-		download.href = 'data:text/plain;charset=utf-8;base64,' + utf8ToBase64(lines.join('\n'));
+		download.href = 'data:application/json;charset=utf-8;base64,' + utf8ToBase64(JSON.stringify($scope.groups));
 		download.click();
 	}
-	
+
 	$scope.handleDragOver = function(e) {
 		e.stopPropagation();
 		e.preventDefault();
 		e.dataTransfer.dropEffect = 'copy';
 	};
-	
-	$scope.readFile = function(e) {
-		var reader = new FileReader();
-		var file = e.target.files[0];
-		reader.onload = function(e1) {
-			var data = e1.target.result;
-			$scope.$apply(function() {
-				parse(data.split(/\r?\n/), $scope.viewIndex);
-			});
-		}
-		reader.readAsText(file, 'UTF-8');
-	};
-	
-	function parse(lines) {
-		var group = 0;
-		for (var line of lines) {
-			line = line.trim();
-			if (line.startsWith('#')) {
-				group++;
-			} else {
-				if (!$scope.marked.has(line)) {
-					$scope.marked.add(line)
-					$scope.groups[group - 1].push(line);
-				}
-			}
-		}
-	}
+
 	
 	$scope.load = function() {
 		document.getElementById('upload').click();
 	};
+	
+	$scope.reminder = function(text) {
+		return text.replace(/\([^\)]+\)/g, '');
+	};
+	
+	$scope.within = function(colors, cardColors) {
+		if (!cardColors) {
+			return true;
+		}
+		for (let color of cardColors) {
+			if (!colors.includes(COLORS[cardColors])) {
+				return false;
+			}
+		}
+		return true;
+	};
+	
+	$scope.getText = function(card) {
+		return card.name + (card.manaCost ? ' ' + card.manaCost : '') + '\n'
+			+ card.type + '\n'
+			+ (card.text ? card.text + '\n' : '')
+			+ (card.power ? card.power + '/' + card.toughness : '')
+			+ (card.loyalty ? card.loyalty : '');
+	};
+	
+	$scope.next = function() {
+		$scope.selectedCode = $scope.sets[$scope.sets.map(function(x) {
+			return x.name;
+		}).indexOf($scope.selectedCode) + 1].name;
+		$scope.update();
+	};
 
+	$scope.previous = function() {
+		$scope.selectedCode = $scope.sets[$scope.sets.map(function(x) {
+			return x.name;
+		}).indexOf($scope.selectedCode) - 1].name;
+		$scope.update();
+	};
+	
 }]);
 
-BASIC_LAND = new Set(['Plains', 'Island', 'Swamp', 'Mountain', 'Forest']);
+var BASIC_LAND = new Set(['Plains', 'Island', 'Swamp', 'Mountain', 'Forest']);
+
+var COLORS = {
+	'White': 'W',
+	'Blue': 'U',
+	'Black': 'B',
+	'Red': 'R',
+	'Green': 'G'
+};
 
 function utf8ToBase64(str) {
 	return btoa(unescape(encodeURIComponent(str)));
@@ -148,27 +140,25 @@ function setTypeIndex(set) {
 	case 'expansion': 
 		return 0;
 	case 'commander':
-	case 'conspiracy':
-	case 'Two-Headed Giant':
+	case 'draft_innovation':
 		return 1;
-	case 'reprint':
-	// case 'masters':
+	case 'masters':
 		return 2;	
-	case 'planechase':
 	case 'archenemy':
 	case 'box': 
-	case 'from the vault':
-	case 'premium deck':
-	case 'duel deck':
-	case 'reprint':
-	case 'starter':
+	case 'duel_deck':
+	case 'from_the_vault':
 	case 'masterpiece':
+	case 'memorabilia':
+	case 'spellbook':
+	case 'planechase':
+	case 'premium_deck':
+	case 'starter':
 	case 'global serires':
 	case 'board game deck':
-	case 'signature spellbook':
 		return 3;
 	case 'promo':
-	case 'un':
+	case 'funny':
 	case 'vanguard':
 		return 4;
 	default:
@@ -179,4 +169,10 @@ function setTypeIndex(set) {
 
 function utf8ToBase64(str) {
 	return btoa(unescape(encodeURIComponent(str)));
+}
+
+var database;
+
+function init(json) {
+	database = json;
 }
